@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<h1>The Psychic Game</h1>
+<h2>Guess which letter I'm thinking of</h2>
+<h3>Wins:</h3>
+<h3>Losses:</h3>
+<h3>Guesses left</h3>
+<h3>Guesses so far</h3>
+
+<body>
+    <script type="text/javascript">
+        //Setting up variables
+        //Letter choices
+        var computerchoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+            's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+        ];
+
+        //Setting all to zero
+
+        var wins = 0;
+        var losses = 0;
+        var guesses = 0;
+
+        //when key is released it becomes a user guess
+        document.onkeyup = function (event) {
+            var userguess = String.fromCharCode(event.keyCode).toLowerCase();
+        }
+
+        var computerGuess = computerchoices[Math.floor(Math.random() * computerchoices.length)];
+
+        guesses = guesses || 9
+        // Repeat the following logic when user guesses incorrectly.
+        while (userguess !== computerGuess.toString()) {
+            --guesses;
+            if (guesses === 0) {
+                {
+                    break
+                }
+                alert("The Letter was: " + computerGuess);
+            }
+        }
+        console.log("You must be Psychic");
+        if (userguess === computerGuess) {
+            wins++;
+        } else if (userguess !== computerGuess) {
+            losses++;
+        }
+
+        // Taking the tallies and displaying them
+
+        var html = "" +
+            "<h3> Wins: " +
+            wins +
+            "</h3>" +
+            "<h3> Losses: " +
+            losses +
+            "</h3>" +
+            "<h3> Guesses Left: " + (9 - guesses) +
+            "</h3>" +
+            "<h3> Your guesses so far: " + userguess,
+            guesses + "</h3>";
+        document.querySelector('#game').innerHTML = html;
+        }
+    </script>
+
+</body>
+
+</html>
