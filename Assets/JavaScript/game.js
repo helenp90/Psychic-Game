@@ -10,49 +10,46 @@ var wins = 0;
 var losses = 0;
 var guesses = 0;
 var guessesLeft = 7;
-var guessedLetters ;
+var guessedLetters = event;
 var letterToGuess = [];
 
-
-
-//Lets the computer select a random letter from the available choices
 
 //Functions for back-end workings of the game.
 document.onkeyup = function (event) {
   var guesses = event.key;
   guessesLeft = guessesLeft - 1;
-  guessedLetters = display();
+  document.getElementById("guessesLeft").innerHTML = guessesLeft;
+  document.getElementById("guessed").innerHTML = guesses;
   if (guesses === letterToGuess) {
     wins();
   } else if (guessesLeft - 1 === 0) {
+    console.log(guessesLeft);
     lost();
   } else {
     display();
+    console.log(guessedLetters);
   }
 
 }
 
 // Function to have the guesses displayed
 function display() {
-  var winsP = document.getElementById("wins");
-  var losesP = document.getElementById("losses");
   var guessLeft = document.getElementById("guessesLeft");
   var guessedLetters = document.getElementById("guessed");
-  winsP.innerHTML = wins;
-  losesP.innerHTML = losses;
-  // these are bringing up errors in the console. Not sure I know why.
   guessLeft.innerHTML = guessesLeft;
-  guessedLetters.innerHTML = guessedLetters ;
+  guessedLetters.innerHTML = guesses;
 }
 
 // Outcomes of the game/ calls from line 20.
 function wins() {
   wins++;
+  document.getElementById("wins").innerHTML = wins;
   resetGame();
 }
 
 function lost() {
   losses++;
+  document.getElementById("losses").innerHTML = losses;
   resetGame();
 }
 // Function to reset the game.
