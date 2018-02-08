@@ -1,0 +1,8 @@
+p.styledFont{
+	color: green;
+	font-family: helvetica;
+}
+#styledImage{
+	border-style: dotted;
+	border-color: blue;
+}
